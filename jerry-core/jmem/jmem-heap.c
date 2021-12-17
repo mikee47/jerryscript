@@ -734,6 +734,7 @@ jmem_heap_get_stats (jmem_heap_stats_t *out_heap_stats_p) /**< [out] heap stats 
 void
 jmem_heap_stats_print (void)
 {
+#if 0
   jmem_heap_stats_t *heap_stats = &JERRY_CONTEXT (jmem_heap_stats);
 
   JERRY_DEBUG_MSG ("Heap stats:\n");
@@ -764,6 +765,7 @@ jmem_heap_stats_print (void)
                    heap_stats->peak_object_bytes,
                    heap_stats->property_bytes,
                    heap_stats->peak_property_bytes);
+#endif
 } /* jmem_heap_stats_print */
 
 /**

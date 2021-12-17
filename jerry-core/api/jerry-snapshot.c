@@ -33,6 +33,7 @@
 
 #if JERRY_SNAPSHOT_SAVE || JERRY_SNAPSHOT_EXEC
 
+#if JERRY_SNAPSHOT_SAVE
 /**
  * Create an error object
  *
@@ -49,6 +50,7 @@ jerry_create_error_from_id (jerry_error_t error_type, /**< type of error */
 {
   return jerry_create_error (error_type, (jerry_char_t *) ecma_get_error_utf8 (msg));
 } /* jerry_create_error_from_id */
+#endif
 
 /**
  * Get snapshot configuration flags.

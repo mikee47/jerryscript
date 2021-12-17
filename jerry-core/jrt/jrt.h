@@ -24,6 +24,12 @@
 #include "config.h"
 #include "jrt-types.h"
 
+#ifdef SMING_ARCH
+#include <FakePgmSpace.h>
+#else
+#define _F(x) x
+#endif
+
 /*
  * Constants
  */
@@ -78,14 +84,14 @@ void JERRY_ATTR_NORETURN jerry_unreachable (const char *file, const char *functi
   {                                                         \
     if (JERRY_UNLIKELY (!(x)))                              \
     {                                                       \
-      jerry_assert_fail (#x, __FILE__, __func__, __LINE__); \
+      jerry_assert_fail (_F(#x), _F(__FILE__), __func__, __LINE__); \
     }                                                       \
   } while (0)
 
 #define JERRY_UNREACHABLE()                           \
   do                                                  \
   {                                                   \
-    jerry_unreachable (__FILE__, __func__, __LINE__); \
+    jerry_unreachable (_F(__FILE__), __func__, __LINE__); \
   } while (0)
 #else /* JERRY_NDEBUG */
 #define JERRY_ASSERT(x) \
@@ -120,10 +126,10 @@ void JERRY_ATTR_NORETURN jerry_fatal (jerry_fatal_code_t code);
  * Logging
  */
 #if JERRY_LOGGING
-#define JERRY_ERROR_MSG(...)   jerry_port_log (JERRY_LOG_LEVEL_ERROR, __VA_ARGS__)
-#define JERRY_WARNING_MSG(...) jerry_port_log (JERRY_LOG_LEVEL_WARNING, __VA_ARGS__)
-#define JERRY_DEBUG_MSG(...)   jerry_port_log (JERRY_LOG_LEVEL_DEBUG, __VA_ARGS__)
-#define JERRY_TRACE_MSG(...)   jerry_port_log (JERRY_LOG_LEVEL_TRACE, __VA_ARGS__)
+#define JERRY_ERROR_MSG(fmt, ...)   jerry_port_log (JERRY_LOG_LEVEL_ERROR, _F(fmt), ##__VA_ARGS__)
+#define JERRY_WARNING_MSG(fmt, ...) jerry_port_log (JERRY_LOG_LEVEL_WARNING, _F(fmt), ##__VA_ARGS__)
+#define JERRY_DEBUG_MSG(fmt, ...)   jerry_port_log (JERRY_LOG_LEVEL_DEBUG, _F(fmt), ##__VA_ARGS__)
+#define JERRY_TRACE_MSG(fmt, ...)   jerry_port_log (JERRY_LOG_LEVEL_TRACE, _F(fmt), ##__VA_ARGS__)
 #else /* !JERRY_LOGGING */
 #define JERRY_ERROR_MSG(...)          \
   do                                  \

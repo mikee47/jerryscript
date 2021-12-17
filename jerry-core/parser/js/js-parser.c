@@ -3356,12 +3356,9 @@ parser_parse_script (void *source_p, /**< source code */
 
   return bytecode_p;
 #else /* !JERRY_PARSER */
-  JERRY_UNUSED (arg_list_p);
-  JERRY_UNUSED (arg_list_size);
   JERRY_UNUSED (source_p);
-  JERRY_UNUSED (source_size);
   JERRY_UNUSED (parse_opts);
-  JERRY_UNUSED (resource_name);
+  JERRY_UNUSED (options_p);
 
   ecma_raise_syntax_error (ECMA_ERR_PARSER_NOT_SUPPORTED);
   return NULL;

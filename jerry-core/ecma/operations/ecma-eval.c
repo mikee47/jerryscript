@@ -94,8 +94,7 @@ ecma_op_eval_chars_buffer (void *source_p, /**< source code */
 
   return vm_run_eval (bytecode_p, parse_opts);
 #else /* !JERRY_PARSER */
-  JERRY_UNUSED (code_p);
-  JERRY_UNUSED (code_buffer_size);
+  JERRY_UNUSED (source_p);
   JERRY_UNUSED (parse_opts);
 
   return ecma_raise_syntax_error (ECMA_ERR_PARSER_NOT_SUPPORTED);

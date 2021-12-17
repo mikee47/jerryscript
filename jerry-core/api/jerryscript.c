@@ -564,10 +564,12 @@ jerry_run (const jerry_value_t func_val) /**< function to run */
 
   ecma_object_t *object_p = ecma_get_object_from_value (func_val);
 
+#if JERRY_PARSER
   if (!ecma_object_class_is (object_p, ECMA_OBJECT_CLASS_SCRIPT))
   {
     return jerry_throw (ecma_raise_type_error (ECMA_ERR_WRONG_ARGS_MSG));
   }
+#endif
 
   ecma_extended_object_t *ext_object_p = (ecma_extended_object_t *) object_p;
 

@@ -39,3 +39,6 @@ docs/doxygen
 # Tests
 tests/test262/
 .vs
+
+out/
+.submodule
