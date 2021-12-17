@@ -25,7 +25,7 @@ typedef enum
 #if JERRY_ERROR_MESSAGES
 #define ECMA_ERROR_DEF(id, ascii_zt_string) id,
 #else /* !JERRY_ERROR_MESSAGES */
-#define ECMA_ERROR_DEF(id, ascii_zt_string) id = ECMA_ERR_EMPTY,
+#define ECMA_ERROR_DEF(id, ascii_zt_string) id,
 #endif /* JERRY_ERROR_MESSAGES */
 #include "ecma-error-messages.inc.h"
 #undef ECMA_ERROR_DEF
