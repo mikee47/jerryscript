@@ -29,7 +29,7 @@
 void JERRY_ATTR_NORETURN
 jerry_fatal (jerry_fatal_code_t code) /**< status code */
 {
-#ifndef JERRY_NDEBUG
+#if 0
   switch (code)
   {
     case JERRY_FATAL_OUT_OF_MEMORY:

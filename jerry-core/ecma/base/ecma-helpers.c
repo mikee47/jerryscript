@@ -1618,11 +1618,13 @@ ecma_script_get_from_value (ecma_value_t value) /**< compiled code */
       {
         ecma_extended_object_t *ext_object_p = (ecma_extended_object_t *) object_p;
 
+#if JERRY_PARSER
         if (ext_object_p->u.cls.type == ECMA_OBJECT_CLASS_SCRIPT)
         {
           bytecode_p = ECMA_GET_INTERNAL_VALUE_POINTER (ecma_compiled_code_t, ext_object_p->u.cls.u3.value);
           break;
         }
+#endif
 
 #if JERRY_MODULE_SYSTEM
         if (ext_object_p->u.cls.type == ECMA_OBJECT_CLASS_MODULE)

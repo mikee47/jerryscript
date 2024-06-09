@@ -41,6 +41,12 @@
 #include "opcodes.h"
 #include "vm-stack.h"
 
+#ifdef SMING_ARCH
+#include <jerry_port_vm.h>
+#else
+#define jerry_port_watchdog_poll() true
+#endif
+
 /** \addtogroup vm Virtual machine
  * @{
  *
@@ -1018,7 +1024,7 @@ vm_loop (vm_frame_ctx_t *frame_ctx_p) /**< frame context */
   while (true)
   {
     /* Internal loop for byte code execution. */
-    while (true)
+    while (jerry_port_watchdog_poll())
     {
       const uint8_t *byte_code_start_p = byte_code_p;
       uint8_t opcode = *byte_code_p++;
